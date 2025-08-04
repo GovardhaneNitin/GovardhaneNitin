@@ -1,12 +1,14 @@
 ![MasterHead](GitHub.svg)
+
 <h1 align="center">Hi <img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"/> I'm Nitin Govardhane <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> </h1>
-<h3 align="left">I'm a Computer Application Student passionate tech enthusiast diving into the world of programming, open source, and I’m constantly learning and growing as I explore new technologies and collaborate on exciting projects.</h3>
+I'm a Computer Application Student passionate tech enthusiast diving into the world of programming, open source, and I’m constantly learning and growing as I explore new technologies and collaborate on exciting projects.
 <img align="right" alt="Coding" width="500" src="https://camo.githubusercontent.com/0269a14e7cd538be31627954fcf6cd73f032ab406ad93b9f0340b738c26179a8/68747470733a2f2f63646e612e61727473746174696f6e2e636f6d2f702f6173736574732f696d616765732f696d616765732f3033352f3639332f3635362f6f726967696e616c2f6777796e6574682d62616c7563696f2d68656c6c6f2d776f726c642e6769663f31363135363432383737">
 
-[![](https://visitcount.itsvg.in/api?id=GovardhaneNitin&icon=2&color=6)](https://visitcount.itsvg.in)
+[![](https://visitcount.itsvg.in/api?id=GovardhaneNitin&icon=2&color=6)](https://visitcount.itsvg.in) ![Visits](https://img.shields.io/badge/Visits-Count-blue)
 
-### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50">  Follow Me:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/nitingovardhane) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/@blackhawk_vk18) 
+### <img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="50"> Follow Me:
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/nitingovardhane) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/@blackhawk_vk18)
 
 ## 🌱 I’m currently learning:
 
@@ -23,6 +25,7 @@
 - Open-source Projects
 
 ## ⚡ Fun fact:
+
 - I love playing cricket and other sports, but I'm not a fitness freak.
 
 <h2 align="center"> ✍️ Inspirational Quotes </h2>
@@ -46,12 +49,14 @@
 </p>
 
 ## 📊 GitHub Stats:
+
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=GovardhaneNitin&show_icons=true&include_all_commits=true&count_private=true&theme=dracula" alt="GitHub Stats" height="150" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=GovardhaneNitin&theme=dracula" alt="GitHub Streak" height="150" />
 </div>
 
 ## 🐍 Contribution Snake:
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/GovardhaneNitin/GovardhaneNitin/output/github-contribution-grid-snake.svg" alt="Snake animation" />
 </p>
