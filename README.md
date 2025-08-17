@@ -46,17 +46,49 @@ I'm a Computer Application Student passionate tech enthusiast diving into the wo
   </a>
 </p>
 
-## 📊 GitHub Stats:
+<br/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=GovardhaneNitin&theme=react-dark&bg_color=0D1117&hide_border=true" width="100%" alt="GovardhaneNitin contribution graph"/>
+<br/>
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=GovardhaneNitin&show_icons=true&include_all_commits=true&count_private=true&theme=dracula" alt="GitHub Stats" height="150" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=GovardhaneNitin&theme=dracula" alt="GitHub Streak" height="150" />
-</div>
-
-## 🐍 Contribution Snake:
+# 📊 GitHub Stats:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/GovardhaneNitin/GovardhaneNitin/output/github-contribution-grid-snake.svg" alt="Snake animation" />
+  <img height="150" width="150" src="https://github.com/GovardhaneNitin/GovardhaneNitin/blob/master/WEBP/left.webp">
+  <img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=GovardhaneNitin&theme=dark&hide_border=true"/>
+
+  <img height="150" width="150" src="https://github.com/GovardhaneNitin/GovardhaneNitin/blob/master/WEBP/right.webp">
+
+  <p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=GovardhaneNitin&show_icons=true&theme=transparent" alt="GitHub Stats">
 </p>
+   
+ </p>
+
+<div align="center">
+
+<img aligh="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=GovardhaneNitin&theme=maro&hide_border=true&include_all_commits=true&count_private=true&layout=compact" />
+
+</div>
+
+#
+
+# � Projects Stats:
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=GovardhaneNitin&repo=Ordin-Frontend)](https://github.com/GovardhaneNitin/Ordin-Frontend)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=GovardhaneNitin&repo=study-live-frontend)](https://github.com/GovardhaneNitin/study-live-frontend)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=GovardhaneNitin&repo=Cheap-pc-builder)](https://github.com/GovardhaneNitin/Cheap-pc-builder)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=GovardhaneNitin&repo=ready-serverPrismaPostgres)](https://github.com/GovardhaneNitin/ready-serverPrismaPostgres)
+
+<div align="center">
+
+### 𝚂𝚑𝚘𝚠ed 𝚜𝚘𝚖𝚎 ❤️ 𝚋𝚢 𝚜𝚝𝚊𝚛𝚛𝚒𝚗𝚐 𝚜𝚘𝚖𝚎 𝚘𝚏 𝚝𝚑𝚎 𝚛𝚎𝚙𝚘𝚜𝚒𝚝𝚘𝚛𝚒𝚎𝚜!
+
+</div>
+
+<div align="center">
+<!--   <a href="https://github.com/sarwar-asik/sarwar-asik/">
+  <img  src="https://github.com/1999AZZAR/1999AZZAR/blob/main/resources/img/grid-snake.svg"
+       alt="snake" /></a> -->
+</div>
 
 ---
