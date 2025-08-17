@@ -4,13 +4,13 @@ name: Generate Snake
 # Controls when the action will run.
 on:
   schedule:
-    # every 12 hours
-    - cron: "0 */1 * * *"
+    # every 6 hours
+    - cron: "0 */6 * * *"
 
   # This command allows us to run the Action automatically from the Actions tab.
   workflow_dispatch:
 
-  # Also run on every push on the master branch
+  # Also run on every push on the main branch
   push:
     branches:
       - main
@@ -29,7 +29,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Clone repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Generate the snake files in './dist/'
         uses: Platane/snk@v3
@@ -47,7 +47,7 @@ jobs:
         run: git status
 
       - name: Push new files to the output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
