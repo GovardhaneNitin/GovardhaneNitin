@@ -53,8 +53,6 @@ I'm a Computer Application Student passionate tech enthusiast diving into the wo
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=GovardhaneNitin&theme=dracula" alt="GitHub Streak" height="150" />
 </div>
 
-## �️ Breakout Game (Contributions)
-
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="images/breakout-dark.svg" />
@@ -62,7 +60,6 @@ I'm a Computer Application Student passionate tech enthusiast diving into the wo
     <img alt="Breakout Game" src="images/breakout-light.svg" />
   </picture>
   <br />
-  <sub>Generated daily from your GitHub contributions via <a href="https://github.com/cyprieng/github-breakout">github-breakout</a>.</sub>
 </p>
 
 ---
