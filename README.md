@@ -53,10 +53,16 @@ I'm a Computer Application Student passionate tech enthusiast diving into the wo
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=GovardhaneNitin&theme=dracula" alt="GitHub Streak" height="150" />
 </div>
 
-## 🐍 Contribution Snake:
+## �️ Breakout Game (Contributions)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/GovardhaneNitin/GovardhaneNitin/output/github-contribution-grid-snake.svg" alt="Snake animation" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/breakout-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="images/breakout-light.svg" />
+    <img alt="Breakout Game" src="images/breakout-light.svg" />
+  </picture>
+  <br />
+  <sub>Generated daily from your GitHub contributions via <a href="https://github.com/cyprieng/github-breakout">github-breakout</a>.</sub>
 </p>
 
 ---
