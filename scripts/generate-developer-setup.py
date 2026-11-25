@@ -66,43 +66,19 @@ for ind, toks in CODE:
 T = t + HOLD
 pct = lambda x: f"{x / T * 100:.3f}%"
 
-# ---------- cat walk cycle (right side of the desk) ----------
-CAT_T, CAT_DX, STEP = 16, 62, 0.22
-CAT_X, CAT_S = 682, 1.9
-WALKS = ((0.06, 0.38), (0.56, 0.88))
-
-
-def leg_kf(name, sign):
-    kf = ["0%{transform:rotate(0)}"]
-    for a, b in WALKS:
-        kf.append(f"{a * 100:.2f}%{{transform:rotate(0)}}")
-        t, k = a * CAT_T + STEP, 0
-        while t < b * CAT_T - STEP / 2:
-            ang = 22 * sign * (1 if k % 2 == 0 else -1)
-            kf.append(f"{t / CAT_T * 100:.2f}%{{transform:rotate({ang}deg)}}")
-            t += STEP; k += 1
-        kf.append(f"{b * 100:.2f}%{{transform:rotate(0)}}")
-    kf.append("100%{transform:rotate(0)}")
-    return f"@keyframes {name}{{{''.join(kf)}}}"
-
-
-css.append(leg_kf("legA", 1) + leg_kf("legB", -1))
-
 # ---------- header / defs ----------
 A(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-labelledby="title desc">')
 A("<title id=\"title\">Welcome to my GitHub. Hi, I'm Nitin Govardhane, a full-stack engineer.</title>")
 A('<desc id="desc">Animated banner: an intro in the style of nitingovardhane.com above a scene of Nitin in a hoodie '
-  'typing code on a multi-monitor desk at night while it rains outside, with a cat roaming the desk and an owl perched on the window.</desc>')
+  'typing code on a multi-monitor desk at night while it rains outside, with a cat asleep on the PC and an owl perched on the window.</desc>')
 A('<defs>')
-A(f'''<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{BG}"/><stop offset="0.3" stop-color="#0d1422"/><stop offset="0.7" stop-color="#16243a"/><stop offset="1" stop-color="#1d2d44"/></linearGradient>
+A(f'''<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#080e1a"/><stop offset="0.3" stop-color="#0e1829"/><stop offset="0.7" stop-color="#16243a"/><stop offset="1" stop-color="#1d2d44"/></linearGradient>
 <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0.4" stop-color="#8fb4e0" stop-opacity="0"/><stop offset="1" stop-color="#8fb4e0" stop-opacity="0.16"/></linearGradient>
-<radialGradient id="heroGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{ACCENT}" stop-opacity="0.2"/><stop offset="1" stop-color="{ACCENT}" stop-opacity="0"/></radialGradient>
-<linearGradient id="heroShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{BG}" stop-opacity="0.85"/><stop offset="0.75" stop-color="{BG}" stop-opacity="0.35"/><stop offset="1" stop-color="{BG}" stop-opacity="0"/></linearGradient>
-<linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="moonGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#dbe7ff" stop-opacity="0.3"/><stop offset="0.35" stop-color="#9fbcf0" stop-opacity="0.1"/><stop offset="1" stop-color="#9fbcf0" stop-opacity="0"/></radialGradient>
+<filter id="heroText" x="-5%" y="-30%" width="110%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#050912" flood-opacity=".85"/></filter>
+<linearGradient id="heroShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#060a13" stop-opacity="0.5"/><stop offset="0.75" stop-color="#060a13" stop-opacity="0.18"/><stop offset="1" stop-color="#060a13" stop-opacity="0"/></linearGradient>
 <linearGradient id="rainFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.25"/><stop offset="0.35" stop-color="#fff" stop-opacity="1"/></linearGradient>
-<mask id="gridMask" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{OY}"><rect width="{W}" height="{OY}" fill="url(#fadeDown)"/></mask>
 <mask id="rainMask" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><rect width="{W}" height="{H}" fill="url(#rainFade)"/></mask>
-<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#fff" stroke-opacity="0.05"/></pattern>
 <linearGradient id="hoodie" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3b9c3"/><stop offset="0.5" stop-color="#868c97"/><stop offset="1" stop-color="#50555e"/></linearGradient>
 <radialGradient id="hood" cx="0.42" cy="0.3" r="0.75"><stop offset="0" stop-color="#c4c9d1"/><stop offset="0.55" stop-color="#959ba6"/><stop offset="1" stop-color="#5f6570"/></radialGradient>
 <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{ACCENT}" stop-opacity="0.12"/><stop offset="0.2" stop-color="#05070c" stop-opacity="0.35"/><stop offset="0.5" stop-color="#05070c" stop-opacity="0.08"/><stop offset="0.75" stop-color="#6fa8ff" stop-opacity="0"/><stop offset="1" stop-color="#6fa8ff" stop-opacity="0.18"/></linearGradient>
@@ -124,9 +100,10 @@ A(f'''<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop
 EYEBROW = "> welcome to my github"
 EB_X, EB_Y, EB_CW = 56, 112, 8.4
 A(f'<clipPath id="typeClip"><rect class="typeReveal" x="{EB_X}" y="{EB_Y - 16}" width="{len(EYEBROW) * EB_CW + 4:.1f}" height="22"/></clipPath>')
-A('<linearGradient id="catFur" gradientUnits="userSpaceOnUse" x1="0" y1="-34" x2="0" y2="0"><stop offset="0" stop-color="#ffb877"/><stop offset=".55" stop-color="#ef9048"/><stop offset="1" stop-color="#cf6a2e"/></linearGradient>'
-  '<filter id="catLine" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="0" stdDeviation=".55" flood-color="#2a1206" flood-opacity=".95"/></filter>'
-  '<radialGradient id="catEye" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#d8ff8a"/><stop offset=".7" stop-color="#7cc743"/><stop offset="1" stop-color="#3f7d22"/></radialGradient>')
+A('<linearGradient id="catFur" gradientUnits="userSpaceOnUse" x1="0" y1="-15" x2="0" y2="0"><stop offset="0" stop-color="#c8743a"/><stop offset=".45" stop-color="#e0965a"/><stop offset=".8" stop-color="#ebb27c"/><stop offset="1" stop-color="#f1cfa6"/></linearGradient>'
+  '<filter id="catLine" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="0" stdDeviation=".4" flood-color="#1a0b04" flood-opacity=".75"/></filter>')
+A('<filter id="soft" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="4"/></filter>'
+  '<linearGradient id="velvet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset=".5" stop-color="#6d28d9"/><stop offset="1" stop-color="#3b1780"/></linearGradient>')
 A('</defs>')
 
 # ---------- CSS ----------
@@ -165,19 +142,32 @@ css.append(f'''
 @keyframes led{{50%{{opacity:.2}}}}
 .enter{{animation:enter .8s cubic-bezier(.21,.47,.32,.98) both}}
 @keyframes enter{{from{{opacity:0;transform:translateY(14px)}}to{{opacity:1;transform:none}}}}
-.catMove{{animation:catMove {CAT_T}s linear infinite}}
-@keyframes catMove{{0%,6%{{transform:translateX(0)}}38%,56%{{transform:translateX({CAT_DX}px)}}88%,100%{{transform:translateX(0)}}}}
-.catFlip{{animation:catFlip {CAT_T}s infinite}}
-@keyframes catFlip{{0%{{transform:scaleX(1);animation-timing-function:step-end}}56%{{transform:scaleX(-1);animation-timing-function:step-end}}100%{{transform:scaleX(-1)}}}}
-.leg{{transform-box:fill-box;transform-origin:50% 0}}
-.legA{{animation:legA {CAT_T}s infinite}}
-.legB{{animation:legB {CAT_T}s infinite}}
-.tail{{transform-box:fill-box;transform-origin:100% 100%;animation:tail 1.8s ease-in-out infinite alternate}}
-@keyframes tail{{from{{transform:rotate(-14deg)}}to{{transform:rotate(12deg)}}}}
+.breathe{{transform-box:fill-box;transform-origin:50% 100%;animation:breathe2 11.4s ease-in-out infinite}}
+@keyframes breathe2{{0%,33.3%,66.6%,100%{{transform:scale(1,1)}}16.6%,50%{{transform:scale(1.015,1.05)}}83%{{transform:scale(1.03,1.1)}}}}
+.breatheHead{{animation:breatheHead 11.4s ease-in-out infinite}}
+@keyframes breatheHead{{0%,33.3%,66.6%,100%{{transform:translateY(0)}}16.6%,50%{{transform:translateY(-.4px)}}83%{{transform:translate(.2px,-.8px)}}}}
+.bubble{{transform-box:fill-box;transform-origin:20% 100%;animation:bubble 11.4s ease-in-out infinite}}
+@keyframes bubble{{0%{{transform:scale(.5);opacity:.85}}16.6%{{transform:scale(.25)}}33.3%{{transform:scale(.7)}}50%{{transform:scale(.3)}}66.6%{{transform:scale(1)}}80%{{transform:scale(.4)}}91%{{transform:scale(1.25);opacity:.85}}92.5%{{transform:scale(1.6);opacity:0}}97%{{transform:scale(.1);opacity:0}}100%{{transform:scale(.5);opacity:.85}}}}
+.pop{{transform-box:fill-box;transform-origin:50% 50%;animation:pop 11.4s ease-out infinite;opacity:0}}
+@keyframes pop{{0%,91.5%{{opacity:0;transform:scale(.4)}}92.5%{{opacity:1}}96%,100%{{opacity:0;transform:scale(1.5)}}}}
+.tailTip{{transform-box:view-box;transform-origin:8.6px -.1px;animation:tailTip 7s ease-in-out infinite}}
+@keyframes tailTip{{0%,58%,100%{{transform:rotate(0)}}63%{{transform:rotate(-16deg)}}68%{{transform:rotate(4deg)}}73%{{transform:rotate(-10deg)}}79%{{transform:rotate(0)}}}}
+.paw{{transform-box:fill-box;transform-origin:0% 50%;animation:paw 9s ease-in-out infinite}}
+@keyframes paw{{0%,40%,52%,100%{{transform:translate(0,0)}}43%{{transform:translate(.6px,-.5px)}}46%{{transform:translate(0,0)}}49%{{transform:translate(.5px,-.4px)}}}}
+.whisk{{transform-box:fill-box;transform-origin:0% 50%;animation:whisk 6.2s ease-in-out infinite}}
+@keyframes whisk{{0%,70%,100%{{transform:rotate(0)}}73%{{transform:rotate(-9deg)}}76%{{transform:rotate(3deg)}}79%{{transform:rotate(0)}}}}
+.rem{{transform-box:fill-box;transform-origin:50% 0%;animation:rem 5.3s ease-in-out infinite}}
+@keyframes rem{{0%,30%,40%,100%{{transform:scaleY(1)}}32%,36%{{transform:scaleY(.55)}}34%,38%{{transform:scaleY(1.15)}}}}
+.purr{{transform-box:fill-box;transform-origin:50% 50%;animation:purr 3.8s ease-out infinite;opacity:0}}
+@keyframes purr{{0%{{opacity:0;transform:scale(.6)}}25%{{opacity:.55}}100%{{opacity:0;transform:scale(1.5)}}}}
+.zz{{transform-box:fill-box;transform-origin:50% 50%;animation:zz 4.2s ease-out infinite;opacity:0}}
+@keyframes zz{{0%{{opacity:0;transform:translate(0,0) scale(.6)}}20%{{opacity:.9}}100%{{opacity:0;transform:translate(-16px,-34px) scale(1.25)}}}}
+.sparkle{{transform-box:fill-box;transform-origin:50% 50%;animation:sparkle 2.6s ease-in-out infinite;opacity:0}}
+@keyframes sparkle{{0%,100%{{opacity:0;transform:scale(.3) rotate(0)}}50%{{opacity:1;transform:scale(1) rotate(45deg)}}}}
+.tassel{{transform-box:fill-box;transform-origin:50% 0;animation:tassel 3s ease-in-out infinite alternate}}
+@keyframes tassel{{from{{transform:rotate(-8deg)}}to{{transform:rotate(8deg)}}}}
 .ear{{transform-box:fill-box;transform-origin:50% 100%;animation:ear 5.2s ease-in-out infinite}}
 @keyframes ear{{0%,86%,100%{{transform:rotate(0)}}89%{{transform:rotate(-14deg)}}92%{{transform:rotate(6deg)}}}}
-.catHead{{transform-box:fill-box;transform-origin:20% 90%;animation:catHead {CAT_T}s ease-in-out infinite}}
-@keyframes catHead{{0%,40%,54%,100%{{transform:rotate(0)}}44%,50%{{transform:rotate(-8deg)}}}}
 .owlHead{{transform-box:fill-box;transform-origin:50% 90%;animation:owlHead 9s ease-in-out infinite}}
 @keyframes owlHead{{0%,40%,100%{{transform:rotate(0)}}46%,58%{{transform:rotate(-14deg)}}64%,72%{{transform:rotate(10deg)}}78%{{transform:rotate(0)}}}}
 .lid{{transform-box:fill-box;transform-origin:50% 0;animation:lid 4.6s infinite}}
@@ -194,8 +184,18 @@ A('<g clip-path="url(#frame)">')
 
 # ---------- sky, hero backdrop, city ----------
 rect(0, 0, W, H, "url(#sky)")
-A(f'<rect width="{W}" height="{OY}" fill="url(#grid)" mask="url(#gridMask)"/>')
-A('<ellipse cx="230" cy="120" rx="430" ry="210" fill="url(#heroGlow)"/>')
+# stars and a moon so the intro sits in the same night sky as the desk scene
+stars = []
+for _ in range(70):
+    sx, sy, sr = random.uniform(10, 990), random.uniform(10, 300), random.uniform(0.5, 1.2)
+    if random.random() < 0.3:
+        A(f'<circle class="win" style="animation-delay:-{random.uniform(0, 6):.1f}s" cx="{sx:.0f}" cy="{sy:.0f}" r="{sr:.1f}" fill="#fff"/>')
+    else:
+        stars.append(f"M{sx:.0f} {sy:.0f}m-{sr:.1f} 0a{sr:.1f} {sr:.1f} 0 1 0 {2 * sr:.1f} 0a{sr:.1f} {sr:.1f} 0 1 0 -{2 * sr:.1f} 0")
+A(f'<path d="{"".join(stars)}" fill="#fff" opacity=".45"/>')
+A('<ellipse cx="850" cy="150" rx="190" ry="160" fill="url(#moonGlow)"/>')
+A('<circle cx="850" cy="150" r="26" fill="#f2eee0"/>')
+A('<circle cx="841" cy="143" r="5" fill="#ddd7c4" opacity=".7"/><circle cx="858" cy="160" r="3.6" fill="#ddd7c4" opacity=".6"/><circle cx="861" cy="139" r="2.4" fill="#ddd7c4" opacity=".6"/>')
 BASE = 470 + OY
 x = -10
 while x < W:
@@ -406,55 +406,6 @@ A('<ellipse cx="655" cy="402" rx="9" ry="4.5" fill="#101114"/>')
 A('<ellipse cx="655" cy="405" rx="9" ry="1.4" fill="url(#rgb)"/>')
 A('</g>')
 
-# ---------- cat roaming the desk (side view, facing right; feet at y=0) ----------
-FUR, FUR_DK, STRIPE, CREAM = "url(#catFur)", "#c7652e", "#b0521f", "#fde6cc"
-A(f'<g transform="translate({CAT_X} 401) scale({CAT_S})"><g class="catMove"><g class="catFlip"><g filter="url(#catLine)">')
-A('<ellipse cx="1" cy="0.6" rx="19" ry="1.8" fill="#000" opacity=".35"/>')
-# tail (behind the body), curling up with a darker tip
-A(f'<g class="tail"><path d="M-15 -12 C-24 -12 -28 -19 -26 -27 C-25 -32 -21 -34 -19 -31" stroke="{FUR}" stroke-width="4" fill="none" stroke-linecap="round"/>'
-  f'<path d="M-24.6 -30.4 C-23 -33.6 -20.6 -33.8 -19 -31" stroke="{STRIPE}" stroke-width="4" fill="none" stroke-linecap="round"/>'
-  f'<path d="M-23.5 -16 l2.6 -1.6 M-26 -22 l3 -.4" stroke="{STRIPE}" stroke-width="1.4" stroke-linecap="round"/></g>')
-
-
-def cat_leg(x, cls, near):
-    fill = FUR if near else FUR_DK
-    A(f'<g class="leg {cls}"><rect x="{x}" y="-9" width="3.6" height="9" rx="1.8" fill="{fill}"/>'
-      f'<ellipse cx="{x + 2.2}" cy="-0.6" rx="2.4" ry="1.3" fill="{CREAM if near else "#e9c9a5"}"/></g>')
-
-
-cat_leg(-9.5, "legB", False)
-cat_leg(8.5, "legA", False)
-# body: a soft loaf with a rounded haunch
-A(f'<path d="M-16.5 -12.5 C-17 -18.5 -10 -20.5 -2 -20 C5 -19.6 10 -19.6 12.4 -16.4 C14.4 -12.6 12.4 -7.2 8.4 -6 L-11 -6 C-15.6 -6.8 -16.6 -9.6 -16.5 -12.5 Z" fill="{FUR}"/>')
-A(f'<ellipse cx="-11" cy="-11.2" rx="5.8" ry="6" fill="{FUR}"/>')
-A(f'<path d="M-15.4 -9 C-14 -6.6 -9 -6.2 -6.4 -8" stroke="{FUR_DK}" stroke-width=".8" fill="none" opacity=".6"/>')
-A(f'<path d="M5 -17 C11 -16 13 -10 9 -6.2 L1 -6.2 C3.6 -9 4 -13 5 -17 Z" fill="{CREAM}"/>')
-A(f'<path d="M-8.6 -19.8 q1.6 3.4 .4 7 M-4.4 -20 q1.6 3.6 .4 7.4 M-.2 -19.8 q1.4 3.2 .4 6.6 M-13.6 -16.4 q2.8 1.6 3 5" stroke="{STRIPE}" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".9"/>')
-cat_leg(-12.5, "legA", True)
-cat_leg(5.6, "legB", True)
-# head
-A('<g class="catHead">')
-A(f'<path class="ear" d="M9.4 -23.4 L10.2 -32.4 Q11 -33 11.8 -32.2 L15.4 -27.4 Z" fill="{FUR}"/>')
-A(f'<path class="ear" style="animation-delay:-.15s" d="M16.2 -27.6 L20.6 -32.6 Q21.4 -33 21.6 -32 L21.8 -22.8 Z" fill="{FUR}"/>')
-A('<path d="M10.6 -25 L11 -30.2 L13.8 -27 Z M17.6 -27.4 L20.6 -30.6 L20.8 -24.4 Z" fill="#f7a8b4"/>')
-A(f'<path d="M8.2 -20.2 C8 -25.6 11.6 -28.4 15.4 -28.4 C19.6 -28.4 22.8 -25.4 22.8 -21.2 C22.8 -17.6 21 -14.6 16.6 -14 '
-  f'C13.6 -13.6 11 -14.4 9.6 -15.6 L8 -15.2 L8.8 -16.8 L7.4 -17.2 L8.6 -18.2 Z" fill="{FUR}"/>')
-A(f'<path d="M14 -28.2 v2.6 M16 -28.4 v2.8 M18 -28 v2.4" stroke="{STRIPE}" stroke-width="1" stroke-linecap="round"/>')
-A(f'<ellipse cx="19.8" cy="-17.4" rx="3.4" ry="2.6" fill="{CREAM}"/>')
-A('<ellipse cx="17.2" cy="-21.2" rx="2" ry="2.4" fill="url(#catEye)"/>')
-A('<ellipse cx="17.6" cy="-21.1" rx=".75" ry="1.9" fill="#14110f"/>')
-A('<circle cx="16.6" cy="-22.2" r=".65" fill="#fff"/><circle cx="18.1" cy="-20.1" r=".3" fill="#fff" opacity=".8"/>')
-A(f'<rect class="lid" style="animation-delay:-2.3s" x="14.9" y="-23.9" width="4.6" height="5.4" rx="2.3" fill="#e9904f"/>')
-A('<ellipse cx="15.8" cy="-17.6" rx="1.6" ry=".9" fill="#ff8fa3" opacity=".55"/>')
-A('<path d="M21.6 -19.1 L23.1 -19.3 L22.2 -18.1 Z" fill="#ff7f9a"/>')
-A('<path d="M22.3 -18.1 q-.2 1 -1.4 1.1" stroke="#7a3a14" stroke-width=".4" fill="none" stroke-linecap="round"/>')
-A('<path d="M20.6 -17.8 l6.4 -1.6 M20.8 -17.2 l6.6 .2 M20.6 -16.6 l6 1.6" stroke="#fff" stroke-width=".3" opacity=".75" stroke-linecap="round"/>')
-A('</g>')
-# collar + bell
-A('<path d="M10.2 -23.2 C8.6 -20.4 8.8 -16.6 10.6 -14.4" stroke="#3b82f6" stroke-width="1.8" fill="none" stroke-linecap="round"/>')
-A('<circle cx="10.4" cy="-13.4" r="1.4" fill="#ffd34d"/><circle cx="10" cy="-13.8" r=".45" fill="#fff6c9"/>')
-A('</g></g></g></g>')
-
 # ---------- person ----------
 TORSO = "M352 560 C346 500 340 440 346 380 C350 336 372 304 410 292 L530 292 C568 304 590 336 594 380 C600 440 594 500 588 560 Z"
 HOOD = ("M470 146 C474 146 478 147 482 149 C516 158 538 188 538 226 C538 256 530 280 520 298 "
@@ -500,6 +451,66 @@ for k in range(7):
     A(f'<path transform="rotate({k * 360 / 7:.1f} 962 508)" d="M962 508 C968 496 976 488 986 486 C980 496 974 504 962 508 Z" fill="#3a4250"/>')
 A('<circle cx="962" cy="508" r="6" fill="#1b1e24"/></g>')
 A('<circle class="led" cx="932" cy="464" r="2" fill="#3dff9e"/>')
+
+# ---------- cat asleep on the PC tower (curled up, head on its tail; bottom at y=0) ----------
+FUR, STRIPE, CREAM = "url(#catFur)", "#9a4f22", "#f3dcbc"
+GOLD = "#f5c84c"
+# RGB glow spilling from the PC, then a velvet cushion with gold piping and tassels
+A('<g class="rgb"><ellipse cx="956" cy="450" rx="46" ry="7" fill="url(#rgb)" opacity=".55" filter="url(#soft)"/></g>')
+for tx in (922, 990):
+    A(f'<g class="tassel" style="animation-delay:-{(tx - 922) / 40:.1f}s"><path d="M{tx} 449 v7" stroke="{GOLD}" stroke-width="1"/>'
+      f'<path d="M{tx - 1.8} 456 h3.6 l.8 6 h-5.2 Z" fill="{GOLD}"/><circle cx="{tx}" cy="455.6" r="1.4" fill="#ffe08a"/></g>')
+A(f'<rect x="920" y="443" width="72" height="10" rx="5" fill="url(#velvet)" stroke="{GOLD}" stroke-width="1"/>')
+A('<path d="M926 445.4 C944 443.8 968 443.8 986 445.4" stroke="#c4a5ff" stroke-width="1" fill="none" opacity=".5" stroke-linecap="round"/>')
+A(f'<path d="M{"".join(f"M{bx} 448.4a.9 .9 0 1 0 .1 0" for bx in (932, 944, 956, 968, 980))[1:]}" fill="#2e1065" opacity=".7"/>')
+A('<g transform="translate(953 444) scale(1.7)"><g filter="url(#catLine)">')
+A('<ellipse cx="0" cy="0.2" rx="20" ry="1.4" fill="#000" opacity=".4"/>')
+A('<g class="breathe">')
+A(f'<path d="M-19 -1 C-20.5 -8 -15 -14.5 -5 -15 C4 -15.4 11 -13 14.5 -9 C16.5 -6.5 16.5 -2 14 -0.6 C6 0.4 -12 0.4 -19 -1 Z" fill="{FUR}"/>')
+A(f'<ellipse cx="-10.4" cy="-6.6" rx="8.4" ry="6.6" fill="{FUR}"/>')
+A(f'<path d="M-17.4 -2.6 C-16.4 -9.6 -9.6 -12.6 -3.4 -10" stroke="{STRIPE}" stroke-width=".8" fill="none" opacity=".4"/>')
+stripes = "".join(f"M{x} {y} q.9 2.4 .1 4.4" for x, y in ((-15.4, -11.2), (-11.8, -13.4), (-7.8, -14.6), (-3.8, -15), (0.2, -14.9), (4.2, -14.4), (8, -13.2)))
+A(f'<path d="{stripes}" stroke="{STRIPE}" stroke-width="1" fill="none" stroke-linecap="round" opacity=".5"/>')
+A('</g>')
+A(f'<ellipse cx="12.6" cy="-0.9" rx="2.3" ry="1" fill="{CREAM}"/><g class="paw"><ellipse cx="16.4" cy="-1" rx="2.4" ry="1.1" fill="{CREAM}"/>'
+  '<path d="M17.4 -0.4 v-.9 M18.4 -0.5 v-.8" stroke="#c9a27a" stroke-width=".3" stroke-linecap="round"/></g>')
+# tail wrapped around the front
+A(f'<path d="M-18.6 -2.4 C-16 1.2 -2 1.6 8.6 0.1" stroke="{FUR}" stroke-width="3" fill="none" stroke-linecap="round"/>')
+A(f'<path d="M-12 0.2 l.4 -2.4 M-6 0.8 l.2 -2.6 M0 0.9 l0 -2.6 M5 0.6 l-.2 -2.4" stroke="{STRIPE}" stroke-width=".9" stroke-linecap="round" opacity=".6"/>')
+A(f'<g class="tailTip"><path d="M8.4 0 C10.2 -0.2 11.6 -0.9 12.2 -2.2" stroke="{FUR}" stroke-width="3" fill="none" stroke-linecap="round"/>'
+  f'<path d="M10.2 -0.4 C11.2 -0.8 11.9 -1.4 12.2 -2.2" stroke="{STRIPE}" stroke-width="3" fill="none" stroke-linecap="round"/></g>')
+# head resting on the tail, eyes closed
+A('<g class="breatheHead">')
+A('<path d="M9 -11 L9.6 -16.4 L12.8 -12.6 Z" fill="#b8692f"/>')
+A(f'<path class="ear" d="M13.6 -12.9 L17.6 -16.6 L18.6 -11.2 Z" fill="{FUR}"/>')
+A('<path d="M14.8 -12.8 L17.2 -15 L17.7 -11.8 Z" fill="#d99a86"/>')
+A(f'<path d="M7.4 -6 C7.4 -10.8 10.6 -13 14 -13 C17.6 -13 20.4 -10.6 20.8 -7.4 C21.2 -4.4 19.4 -1.8 16 -1.4 C12 -1 7.4 -2.2 7.4 -6 Z" fill="{FUR}"/>')
+A(f'<path d="M12.4 -12.6 l.3 1.8 M14 -12.9 v1.9 M15.6 -12.6 l-.3 1.7 M10 -6.6 C11 -5.8 12.2 -5.6 13.2 -5.8" stroke="{STRIPE}" stroke-width=".55" fill="none" stroke-linecap="round" opacity=".8"/>')
+A(f'<ellipse cx="18.4" cy="-4.6" rx="2.8" ry="2" fill="{CREAM}"/>')
+A('<path class="rem" d="M14.6 -8.2 q1.5 1.2 3 0" stroke="#3a1d0b" stroke-width=".55" fill="none" stroke-linecap="round"/>')
+A('<path d="M14.3 -8.5 l-.5 -.4 M17.9 -8.5 l.5 -.4" stroke="#3a1d0b" stroke-width=".35" stroke-linecap="round" opacity=".7"/>')
+A('<path d="M20.4 -6.2 L21.2 -5.6 L20.5 -5 Z" fill="#b8706c"/>')
+A('<path class="whisk" d="M19.4 -4.4 l4.4 .6 M19.4 -3.9 l4 1.4 M19.4 -4.9 l4.2 -.4" stroke="#fff" stroke-width=".22" opacity=".6" stroke-linecap="round"/>')
+A('<g transform="translate(21 -6.2)"><g class="bubble">'
+  '<circle cx="1.2" cy="-2.4" r="2.6" fill="#bfe3ff" fill-opacity=".28" stroke="#e8f6ff" stroke-width=".3"/>'
+  '<path d="M0 -3.7 a1.6 1.6 0 0 1 1.5 -.6" stroke="#fff" stroke-width=".45" fill="none" stroke-linecap="round"/></g>'
+  '<g class="pop" fill="none" stroke="#e8f6ff" stroke-width=".35" stroke-linecap="round">'
+  '<path d="M1.2 -6 v-1 M3.8 -4.8 l.8 -.6 M4.4 -2 h1 M-1.4 -5 l-.7 -.6 M-2.2 -2.2 h-.9"/></g></g>')
+A('<g transform="translate(12.4 -12.2) rotate(-18) scale(.85)">'
+  '<path d="M-.4 .4 L-1.6 3.2 M.4 .4 L1.8 3" stroke="#e23d86" stroke-width=".9" stroke-linecap="round"/>'
+  '<path d="M0 0 C-2.8 -2.6 -3.9 .6 -2.8 1.7 C-1.9 2.3 -.8 1 0 0 Z M0 0 C2.8 -2.6 3.9 .6 2.8 1.7 C1.9 2.3 .8 1 0 0 Z" fill="#ff5fa2"/>'
+  '<path d="M-2.4 -.6 C-2 -1.2 -1.4 -1 -1 -.4 M2.4 -.6 C2 -1.2 1.4 -1 1 -.4" stroke="#ffc2dc" stroke-width=".45" fill="none" stroke-linecap="round"/>'
+  '<circle r=".8" fill="#e23d86"/></g>')
+A('</g>')
+for i in range(2):
+    A(f'<path class="purr" style="animation-delay:{i * 1.9:.1f}s" d="M-21.5 -9 q-1.6 2.6 0 5.2 M-23.2 -10 q-2.2 3.6 0 7.2" stroke="#ffd9a8" stroke-width=".4" fill="none" stroke-linecap="round"/>')
+A('</g></g>')
+for i, (sx, sy, sc) in enumerate(((913, 436, 1), (934, 413, .8), (996, 426, .7))):
+    A(f'<g transform="translate({sx} {sy}) scale({sc})"><path class="sparkle" style="animation-delay:{i * 0.85:.2f}s" '
+      f'd="M0 -3.4 L.8 -.8 L3.4 0 L.8 .8 L0 3.4 L-.8 .8 L-3.4 0 L-.8 -.8 Z" fill="#ffd76a"/></g>')
+for i, fs in enumerate((10, 12.5, 15)):
+    A(f'<text class="zz" style="animation-delay:{i * 1.4:.1f}s" x="{968 + i * 4}" y="424" font-family="{MONO}" font-size="{fs}" font-weight="700" '
+      f'fill="#e6efff" stroke="#0b1220" stroke-width="1.2" paint-order="stroke">z</text>')
 A('</g>')  # end scene
 
 rect(0, 0, W, H, "url(#vignette)")
@@ -527,10 +538,10 @@ A(f'<path d="M-1.8 -38.5 L1.8 -38.5 L0 -34 Z" fill="#e0a040"/>')
 A('<path d="M-12 -51.5 C-6 -55.2 6 -55.2 12 -51.5" stroke="#8ec1ff" stroke-width=".9" fill="none" opacity=".35"/>')
 A('</g></g>')
 
-# ================= hero (portfolio style) =================
+# ================= hero (portfolio style, set in the night sky) =================
 # status pill
 A('<g class="enter">')
-rect(50, 36, 200, 32, "#121214", rx=16, extra=f'stroke="{LINE}" fill-opacity="0.85"')
+rect(50, 36, 200, 32, "#0f1a2c", rx=16, extra=f'stroke="#2c3d5a" fill-opacity="0.6"')
 monogram(55, 41, 22)
 A(f'<circle class="pulse" cx="92" cy="52" r="4" fill="{SUCCESS}"/>')
 A(f'<circle cx="92" cy="52" r="4" fill="{SUCCESS}"/>')
@@ -543,10 +554,10 @@ A(f'<text x="{EB_X}" y="{EB_Y}" font-family="{MONO}" font-size="14" font-weight=
   f'textLength="{len(EYEBROW) * EB_CW:.1f}" lengthAdjust="spacingAndGlyphs" clip-path="url(#typeClip)">{escape(EYEBROW)}</text>')
 A(f'<g class="caret"><rect class="blink" x="{EB_X + 2}" y="{EB_Y - 13}" width="8" height="16" fill="{ACCENT}" opacity="0.85"/></g>')
 # headline
-A(f'<g class="enter" style="animation-delay:.25s"><text x="54" y="170" font-family="{SANS}" font-size="52" font-weight="600" '
+A(f'<g class="enter" style="animation-delay:.25s" filter="url(#heroText)"><text x="54" y="170" font-family="{SANS}" font-size="52" font-weight="600" '
   f'letter-spacing="-2" fill="{FG}">Hi, I\'m Nitin Govardhane<tspan dx="14" font-size="44">👋</tspan></text></g>')
 # tagline
-A(f'<g class="enter" style="animation-delay:.45s"><text x="56" y="210" font-family="{SANS}" font-size="21" fill="{FG2}">'
+A(f'<g class="enter" style="animation-delay:.45s" filter="url(#heroText)"><text x="56" y="210" font-family="{SANS}" font-size="21" fill="#c3cfe2">'
   f'Full-stack engineer. I build software that '
   f'<tspan font-family="{SERIF}" font-style="italic" font-size="25" fill="{ACCENT}">keeps working</tspan> after it ships.</text></g>')
 # stack chips
@@ -554,8 +565,8 @@ A('<g class="enter" style="animation-delay:.65s">')
 cx = 56
 for name in ("TypeScript", "React", "Next.js", "Node.js", "PostgreSQL", "Supabase", "AI / LLMs"):
     tw = len(name) * 6.9
-    rect(cx, 226, tw + 20, 24, "#121214", rx=12, extra=f'stroke="{LINE}" fill-opacity="0.85"')
-    A(f'<text x="{cx + 10}" y="242" font-family="{MONO}" font-size="11.5" fill="{FG2}" textLength="{tw:.1f}" lengthAdjust="spacingAndGlyphs">{escape(name)}</text>')
+    rect(cx, 226, tw + 20, 24, "#0f1a2c", rx=12, extra=f'stroke="#2c3d5a" fill-opacity="0.6"')
+    A(f'<text x="{cx + 10}" y="242" font-family="{MONO}" font-size="11.5" fill="#c3cfe2" textLength="{tw:.1f}" lengthAdjust="spacingAndGlyphs">{escape(name)}</text>')
     cx += tw + 28
 A('</g>')
 A('</g>')  # end frame clip
