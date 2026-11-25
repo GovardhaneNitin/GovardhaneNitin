@@ -38,8 +38,8 @@ COL = dict(kw="#569cd6", kw2="#c586c0", var="#9cdcfe", prop="#9cdcfe", str="#ce9
 CODE = [
     (0, [("kw", "const "), ("var", "nitin"), ("p", ": "), ("type", "Engineer"), ("p", " = {")]),
     (1, [("prop", "role"), ("p", ": "), ("str", '"Full-Stack Product Engineer"'), ("p", ",")]),
-    (1, [("prop", "company"), ("p", ": "), ("str", '"BeeAPro"'), ("p", ",")]),
-    (1, [("prop", "based"), ("p", ": "), ("str", '"Nashik, India"'), ("p", ",")]),
+    (1, [("prop", "focus"), ("p", ": "), ("str", '"Web apps & AI products"'), ("p", ",")]),
+    (1, [("prop", "coffee"), ("p", ": "), ("kw", "Infinity"), ("p", ",")]),
     (1, [("prop", "stack"), ("p", ": ["), ("str", '"React"'), ("p", ", "), ("str", '"Next.js"'), ("p", ", "),
          ("str", '"Supabase"'), ("p", "],")]),
     (1, [("prop", "site"), ("p", ": "), ("str", '"nitingovardhane.com"'), ("p", ",")]),
@@ -66,11 +66,32 @@ for ind, toks in CODE:
 T = t + HOLD
 pct = lambda x: f"{x / T * 100:.3f}%"
 
+# ---------- cat walk cycle (right side of the desk) ----------
+CAT_T, CAT_DX, STEP = 16, 110, 0.2
+WALKS = ((0.06, 0.38), (0.56, 0.88))
+
+
+def leg_kf(name, sign):
+    kf = ["0%{transform:rotate(0)}"]
+    for a, b in WALKS:
+        kf.append(f"{a * 100:.2f}%{{transform:rotate(0)}}")
+        t, k = a * CAT_T + STEP, 0
+        while t < b * CAT_T - STEP / 2:
+            ang = 22 * sign * (1 if k % 2 == 0 else -1)
+            kf.append(f"{t / CAT_T * 100:.2f}%{{transform:rotate({ang}deg)}}")
+            t += STEP; k += 1
+        kf.append(f"{b * 100:.2f}%{{transform:rotate(0)}}")
+    kf.append("100%{transform:rotate(0)}")
+    return f"@keyframes {name}{{{''.join(kf)}}}"
+
+
+css.append(leg_kf("legA", 1) + leg_kf("legB", -1))
+
 # ---------- header / defs ----------
 A(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-labelledby="title desc">')
 A("<title id=\"title\">Welcome to my GitHub. Hi, I'm Nitin Govardhane, a full-stack engineer.</title>")
 A('<desc id="desc">Animated banner: an intro in the style of nitingovardhane.com above a scene of Nitin in a hoodie '
-  'typing code on a multi-monitor desk at night while it rains outside.</desc>')
+  'typing code on a multi-monitor desk at night while it rains outside, with a cat roaming the desk and an owl perched on the window.</desc>')
 A('<defs>')
 A(f'''<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{BG}"/><stop offset="0.3" stop-color="#0d1422"/><stop offset="0.7" stop-color="#16243a"/><stop offset="1" stop-color="#1d2d44"/></linearGradient>
 <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0.4" stop-color="#8fb4e0" stop-opacity="0"/><stop offset="1" stop-color="#8fb4e0" stop-opacity="0.16"/></linearGradient>
@@ -140,6 +161,19 @@ css.append(f'''
 @keyframes led{{50%{{opacity:.2}}}}
 .enter{{animation:enter .8s cubic-bezier(.21,.47,.32,.98) both}}
 @keyframes enter{{from{{opacity:0;transform:translateY(14px)}}to{{opacity:1;transform:none}}}}
+.catMove{{animation:catMove {CAT_T}s linear infinite}}
+@keyframes catMove{{0%,6%{{transform:translateX(0)}}38%,56%{{transform:translateX({CAT_DX}px)}}88%,100%{{transform:translateX(0)}}}}
+.catFlip{{animation:catFlip {CAT_T}s infinite}}
+@keyframes catFlip{{0%{{transform:scaleX(1);animation-timing-function:step-end}}56%{{transform:scaleX(-1);animation-timing-function:step-end}}100%{{transform:scaleX(-1)}}}}
+.leg{{transform-box:fill-box;transform-origin:50% 0}}
+.legA{{animation:legA {CAT_T}s infinite}}
+.legB{{animation:legB {CAT_T}s infinite}}
+.tail{{transform-box:fill-box;transform-origin:100% 100%;animation:tail 1.8s ease-in-out infinite alternate}}
+@keyframes tail{{from{{transform:rotate(-14deg)}}to{{transform:rotate(12deg)}}}}
+.owlHead{{transform-box:fill-box;transform-origin:50% 90%;animation:owlHead 9s ease-in-out infinite}}
+@keyframes owlHead{{0%,40%,100%{{transform:rotate(0)}}46%,58%{{transform:rotate(-14deg)}}64%,72%{{transform:rotate(10deg)}}78%{{transform:rotate(0)}}}}
+.lid{{transform-box:fill-box;transform-origin:50% 0;animation:lid 4.6s infinite}}
+@keyframes lid{{0%,92%,100%{{transform:scaleY(0)}}95%{{transform:scaleY(1)}}}}
 .pulse{{transform-box:fill-box;transform-origin:50% 50%;animation:pulse 2.4s ease-out infinite}}
 @keyframes pulse{{0%{{transform:scale(1);opacity:.7}}80%,100%{{transform:scale(2.6);opacity:0}}}}
 .typeReveal{{animation:reveal {len(EYEBROW) * 0.07:.2f}s steps({len(EYEBROW)},end) .5s both}}
@@ -316,7 +350,7 @@ A('<ellipse class="screenGlow" cx="153" cy="340" rx="110" ry="70" fill="url(#glo
 A('<polygon points="72,290 234,290 236,394 70,394" fill="#16181c"/>')
 rect(79, 296, 148, 92, "#0d1117")
 TERM = [
-    ("#7ee787", "~/beeapro $ npm run test:e2e"),
+    ("#7ee787", "~/projects $ npm run test:e2e"),
     ("#8b949e", "Running 128 tests using 8 workers"),
     ("#7ee787", "  ✓ 128 passed (41.2s)"),
     ("#c9d1d9", "$ npm run typecheck"),
@@ -363,6 +397,27 @@ rect(331, 405, 284, 2, "url(#rgb)", extra='opacity="0.9"')
 A('<ellipse cx="655" cy="402" rx="9" ry="4.5" fill="#101114"/>')
 A('<ellipse cx="655" cy="405" rx="9" ry="1.4" fill="url(#rgb)"/>')
 A('</g>')
+
+# ---------- cat roaming the desk ----------
+CAT, STRIPE, CREAM = "#e08a4c", "#a85a2a", "#f6d7b5"
+A('<g transform="translate(664 401) scale(1.3)"><g class="catMove"><g class="catFlip">')
+A('<ellipse cx="0" cy="1" rx="17" ry="2" fill="#000" opacity=".3"/>')
+A(f'<g class="tail"><path d="M-14 -11 C-22 -12 -26 -20 -23 -30" stroke="{CAT}" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
+  f'<path d="M-24.5 -26 L-23 -30" stroke="{STRIPE}" stroke-width="3.2" stroke-linecap="round"/></g>')
+for x, cls in ((-12, "legA"), (-8, "legB"), (4, "legB"), (8, "legA")):
+    A(f'<rect class="leg {cls}" x="{x}" y="-7" width="3" height="8" rx="1.4" fill="{CAT if x in (-8, 8) else STRIPE}"/>')
+A(f'<ellipse cx="-2" cy="-11" rx="14" ry="6.5" fill="{CAT}"/>')
+A(f'<path d="M-9 -17 q1 4 0 8 M-4 -17.5 q1 4 0 8 M1 -17.5 q1 4 0 8" stroke="{STRIPE}" stroke-width="1.6" fill="none" stroke-linecap="round"/>')
+A(f'<ellipse cx="3" cy="-5.6" rx="8" ry="1.8" fill="{CREAM}" opacity=".8"/>')
+A(f'<path d="M7 -21 L8.5 -29 L12.5 -22 Z M14 -22 L18 -29 L18.5 -20 Z" fill="{CAT}"/>')
+A(f'<path d="M8.6 -22.5 L9.2 -26.5 L11 -23 Z M15.2 -22.3 L17.4 -26.4 L17.6 -21.4 Z" fill="#f4a3a8"/>')
+A(f'<circle cx="13" cy="-17" r="6.4" fill="{CAT}"/>')
+A(f'<ellipse cx="16.5" cy="-14.6" rx="3" ry="2.2" fill="{CREAM}"/>')
+A('<ellipse cx="15.4" cy="-18.4" rx="1.3" ry="1.5" fill="#a6e35a"/><ellipse cx="15.7" cy="-18.4" rx=".45" ry="1.2" fill="#111"/>')
+A('<circle cx="18.9" cy="-15.6" r=".8" fill="#e5737c"/>')
+A('<path d="M18 -14.8 l5 -.8 M18 -14 l5 .6" stroke="#fff" stroke-width=".4" opacity=".7"/>')
+A('<path d="M-12 -16.5 C-4 -19 6 -19 9 -22" stroke="#8ec1ff" stroke-width="1" fill="none" opacity=".45" stroke-linecap="round"/>')
+A('</g></g></g>')
 
 # ---------- person ----------
 TORSO = "M352 560 C346 500 340 440 346 380 C350 336 372 304 410 292 L530 292 C568 304 590 336 594 380 C600 440 594 500 588 560 Z"
@@ -415,6 +470,27 @@ rect(0, 0, W, H, "url(#vignette)")
 A(f'<rect width="{W}" height="{OY - 20}" fill="url(#heroShade)"/>')
 A(f'<text x="24" y="{OY + 540}" font-family="{MONO}" font-size="13" fill="#c9d1d9" opacity=".85">~/nitin <tspan fill="{ACCENT}">$</tspan> git push --ship<tspan class="blink">_</tspan></text>')
 
+# ---------- owl on the window corner ----------
+OWL_X, OWL_Y = 948, OY + 1  # feet rest on the transom
+OWL, OWL_DK, FACE, BELLY = "#7a5a3f", "#4e3826", "#ead6b4", "#cfae82"
+A(f'<g transform="translate({OWL_X} {OWL_Y})">')
+A(f'<path d="M-15 -4 C-20 -18 -17 -34 -9 -38 L9 -38 C17 -34 20 -18 15 -4 Q0 4 -15 -4 Z" fill="{OWL}"/>')
+A(f'<path d="M-14 -24 C-20 -16 -18 -6 -11 -2 Z M14 -24 C20 -16 18 -6 11 -2 Z" fill="{OWL_DK}"/>')
+A(f'<ellipse cx="0" cy="-15" rx="9.5" ry="11" fill="{BELLY}"/>')
+A(f'<path d="M-5 -19 l2 2 l2 -2 M1 -19 l2 2 l2 -2 M-6 -13 l2 2 l2 -2 M0 -13 l2 2 l2 -2 M-3 -7 l2 2 l2 -2 M3 -7 l2 2 l2 -2" stroke="{OWL_DK}" stroke-width=".9" fill="none" opacity=".7"/>')
+A(f'<path d="M-6 0 l-1.6 2.6 M-4.4 0 v3 M-2.8 0 l1.6 2.6 M2.8 0 l-1.6 2.6 M4.4 0 v3 M6 0 l1.6 2.6" stroke="{ACCENT2}" stroke-width="1.3" stroke-linecap="round"/>')
+A('<g class="owlHead">')
+A(f'<path d="M-16 -36 C-17 -48 -12 -56 0 -56 C12 -56 17 -48 16 -36 C14 -29 8 -27 0 -27 C-8 -27 -14 -29 -16 -36 Z" fill="{OWL}"/>')
+A(f'<path d="M-14.5 -47 L-16.5 -60 L-6 -54 Z M14.5 -47 L16.5 -60 L6 -54 Z" fill="{OWL_DK}"/>')
+A(f'<circle cx="-6.8" cy="-42" r="7.4" fill="{FACE}"/><circle cx="6.8" cy="-42" r="7.4" fill="{FACE}"/>')
+for ex in (-6.8, 6.8):
+    A(f'<circle cx="{ex}" cy="-42" r="4.6" fill="#ffb13d"/><circle cx="{ex}" cy="-42" r="2.4" fill="#111"/>'
+      f'<circle cx="{ex + 1}" cy="-43.2" r=".8" fill="#fff"/>')
+    A(f'<rect class="lid" x="{ex - 5}" y="-47" width="10" height="10" rx="5" fill="{OWL}"/>')
+A(f'<path d="M-1.8 -38.5 L1.8 -38.5 L0 -34 Z" fill="#e0a040"/>')
+A('<path d="M-12 -51.5 C-6 -55.2 6 -55.2 12 -51.5" stroke="#8ec1ff" stroke-width=".9" fill="none" opacity=".35"/>')
+A('</g></g>')
+
 # ================= hero (portfolio style) =================
 # status pill
 A('<g class="enter">')
@@ -422,8 +498,8 @@ rect(50, 36, 372, 32, "#121214", rx=16, extra=f'stroke="{LINE}" fill-opacity="0.
 monogram(55, 41, 22)
 A(f'<circle class="pulse" cx="92" cy="52" r="4" fill="{SUCCESS}"/>')
 A(f'<circle cx="92" cy="52" r="4" fill="{SUCCESS}"/>')
-A(f'<text x="104" y="56.5" font-family="{SANS}" font-size="13" fill="{FG2}" textLength="300" lengthAdjust="spacingAndGlyphs">'
-  f'Software Engineer at <tspan fill="{FG}" font-weight="600">BeeAPro</tspan><tspan fill="{FG3}">  ·  Nashik, India</tspan></text>')
+A(f'<text x="104" y="56.5" font-family="{SANS}" font-size="13" fill="{FG2}" textLength="292" lengthAdjust="spacingAndGlyphs">'
+  f'<tspan fill="{FG}" font-weight="600">Software Engineer</tspan><tspan fill="{FG3}">  ·  </tspan>Open to collaborations</text>')
 A('</g>')
 A(f'<g class="enter"><text x="944" y="57" font-family="{MONO}" font-size="13" fill="{FG2}" text-anchor="end">'
   f'nitingovardhane.com <tspan fill="{ACCENT}">↗</tspan></text></g>')

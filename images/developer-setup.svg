@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 830" width="1000" height="830" role="img" aria-labelledby="title desc">
-<style>
+<style>@keyframes legA{0%{transform:rotate(0)}6.00%{transform:rotate(0)}7.25%{transform:rotate(22deg)}8.50%{transform:rotate(-22deg)}9.75%{transform:rotate(22deg)}11.00%{transform:rotate(-22deg)}12.25%{transform:rotate(22deg)}13.50%{transform:rotate(-22deg)}14.75%{transform:rotate(22deg)}16.00%{transform:rotate(-22deg)}17.25%{transform:rotate(22deg)}18.50%{transform:rotate(-22deg)}19.75%{transform:rotate(22deg)}21.00%{transform:rotate(-22deg)}22.25%{transform:rotate(22deg)}23.50%{transform:rotate(-22deg)}24.75%{transform:rotate(22deg)}26.00%{transform:rotate(-22deg)}27.25%{transform:rotate(22deg)}28.50%{transform:rotate(-22deg)}29.75%{transform:rotate(22deg)}31.00%{transform:rotate(-22deg)}32.25%{transform:rotate(22deg)}33.50%{transform:rotate(-22deg)}34.75%{transform:rotate(22deg)}36.00%{transform:rotate(-22deg)}37.25%{transform:rotate(22deg)}38.00%{transform:rotate(0)}56.00%{transform:rotate(0)}57.25%{transform:rotate(22deg)}58.50%{transform:rotate(-22deg)}59.75%{transform:rotate(22deg)}61.00%{transform:rotate(-22deg)}62.25%{transform:rotate(22deg)}63.50%{transform:rotate(-22deg)}64.75%{transform:rotate(22deg)}66.00%{transform:rotate(-22deg)}67.25%{transform:rotate(22deg)}68.50%{transform:rotate(-22deg)}69.75%{transform:rotate(22deg)}71.00%{transform:rotate(-22deg)}72.25%{transform:rotate(22deg)}73.50%{transform:rotate(-22deg)}74.75%{transform:rotate(22deg)}76.00%{transform:rotate(-22deg)}77.25%{transform:rotate(22deg)}78.50%{transform:rotate(-22deg)}79.75%{transform:rotate(22deg)}81.00%{transform:rotate(-22deg)}82.25%{transform:rotate(22deg)}83.50%{transform:rotate(-22deg)}84.75%{transform:rotate(22deg)}86.00%{transform:rotate(-22deg)}87.25%{transform:rotate(22deg)}88.00%{transform:rotate(0)}100%{transform:rotate(0)}}@keyframes legB{0%{transform:rotate(0)}6.00%{transform:rotate(0)}7.25%{transform:rotate(-22deg)}8.50%{transform:rotate(22deg)}9.75%{transform:rotate(-22deg)}11.00%{transform:rotate(22deg)}12.25%{transform:rotate(-22deg)}13.50%{transform:rotate(22deg)}14.75%{transform:rotate(-22deg)}16.00%{transform:rotate(22deg)}17.25%{transform:rotate(-22deg)}18.50%{transform:rotate(22deg)}19.75%{transform:rotate(-22deg)}21.00%{transform:rotate(22deg)}22.25%{transform:rotate(-22deg)}23.50%{transform:rotate(22deg)}24.75%{transform:rotate(-22deg)}26.00%{transform:rotate(22deg)}27.25%{transform:rotate(-22deg)}28.50%{transform:rotate(22deg)}29.75%{transform:rotate(-22deg)}31.00%{transform:rotate(22deg)}32.25%{transform:rotate(-22deg)}33.50%{transform:rotate(22deg)}34.75%{transform:rotate(-22deg)}36.00%{transform:rotate(22deg)}37.25%{transform:rotate(-22deg)}38.00%{transform:rotate(0)}56.00%{transform:rotate(0)}57.25%{transform:rotate(-22deg)}58.50%{transform:rotate(22deg)}59.75%{transform:rotate(-22deg)}61.00%{transform:rotate(22deg)}62.25%{transform:rotate(-22deg)}63.50%{transform:rotate(22deg)}64.75%{transform:rotate(-22deg)}66.00%{transform:rotate(22deg)}67.25%{transform:rotate(-22deg)}68.50%{transform:rotate(22deg)}69.75%{transform:rotate(-22deg)}71.00%{transform:rotate(22deg)}72.25%{transform:rotate(-22deg)}73.50%{transform:rotate(22deg)}74.75%{transform:rotate(-22deg)}76.00%{transform:rotate(22deg)}77.25%{transform:rotate(-22deg)}78.50%{transform:rotate(22deg)}79.75%{transform:rotate(-22deg)}81.00%{transform:rotate(22deg)}82.25%{transform:rotate(-22deg)}83.50%{transform:rotate(22deg)}84.75%{transform:rotate(-22deg)}86.00%{transform:rotate(22deg)}87.25%{transform:rotate(-22deg)}88.00%{transform:rotate(0)}100%{transform:rotate(0)}}
 .rain{animation:rain .9s linear infinite}
 @keyframes rain{from{transform:translateY(-830px)}to{transform:translateY(0)}}
 .win{animation:flick 6s ease-in-out infinite}
@@ -34,15 +34,28 @@
 @keyframes led{50%{opacity:.2}}
 .enter{animation:enter .8s cubic-bezier(.21,.47,.32,.98) both}
 @keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.catMove{animation:catMove 16s linear infinite}
+@keyframes catMove{0%,6%{transform:translateX(0)}38%,56%{transform:translateX(110px)}88%,100%{transform:translateX(0)}}
+.catFlip{animation:catFlip 16s infinite}
+@keyframes catFlip{0%{transform:scaleX(1);animation-timing-function:step-end}56%{transform:scaleX(-1);animation-timing-function:step-end}100%{transform:scaleX(-1)}}
+.leg{transform-box:fill-box;transform-origin:50% 0}
+.legA{animation:legA 16s infinite}
+.legB{animation:legB 16s infinite}
+.tail{transform-box:fill-box;transform-origin:100% 100%;animation:tail 1.8s ease-in-out infinite alternate}
+@keyframes tail{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+.owlHead{transform-box:fill-box;transform-origin:50% 90%;animation:owlHead 9s ease-in-out infinite}
+@keyframes owlHead{0%,40%,100%{transform:rotate(0)}46%,58%{transform:rotate(-14deg)}64%,72%{transform:rotate(10deg)}78%{transform:rotate(0)}}
+.lid{transform-box:fill-box;transform-origin:50% 0;animation:lid 4.6s infinite}
+@keyframes lid{0%,92%,100%{transform:scaleY(0)}95%{transform:scaleY(1)}}
 .pulse{transform-box:fill-box;transform-origin:50% 50%;animation:pulse 2.4s ease-out infinite}
 @keyframes pulse{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(2.6);opacity:0}}
 .typeReveal{animation:reveal 1.54s steps(22,end) .5s both}
 @keyframes reveal{from{transform:translateX(-188.8px)}to{transform:none}}
 .caret{animation:caret 1.54s steps(22,end) .5s both}
 @keyframes caret{from{transform:translateX(0)}to{transform:translateX(184.8px)}}
-.cv12{animation:cv12 23.19s infinite}@keyframes cv12{0%,83.200%{transform:translateX(0);animation-timing-function:steps(1,end)}83.394%,100%{transform:translateX(5.4px)}}.cv11{animation:cv11 23.19s infinite}@keyframes cv11{0%,75.092%{transform:translateX(0);animation-timing-function:steps(34,end)}81.691%,100%{transform:translateX(183.6px)}}.cv10{animation:cv10 23.19s infinite}@keyframes cv10{0%,66.401%{transform:translateX(0);animation-timing-function:steps(37,end)}73.582%,100%{transform:translateX(199.8px)}}.cv9{animation:cv9 23.19s infinite}@keyframes cv9{0%,58.486%{transform:translateX(0);animation-timing-function:steps(33,end)}64.891%,100%{transform:translateX(178.2px)}}.cv8{animation:cv8 23.19s infinite}@keyframes cv8{0%,48.242%{transform:translateX(0);animation-timing-function:steps(45,end)}56.976%,100%{transform:translateX(243.0px)}}.cv6{animation:cv6 23.19s infinite}@keyframes cv6{0%,44.835%{transform:translateX(0);animation-timing-function:steps(2,end)}45.223%,100%{transform:translateX(10.8px)}}.cv5{animation:cv5 23.19s infinite}@keyframes cv5{0%,37.891%{transform:translateX(0);animation-timing-function:steps(28,end)}43.325%,100%{transform:translateX(151.2px)}}.cv4{animation:cv4 23.19s infinite}@keyframes cv4{0%,28.618%{transform:translateX(0);animation-timing-function:steps(40,end)}36.381%,100%{transform:translateX(216.0px)}}.cv3{animation:cv3 23.19s infinite}@keyframes cv3{0%,22.644%{transform:translateX(0);animation-timing-function:steps(23,end)}27.108%,100%{transform:translateX(124.2px)}}.cv2{animation:cv2 23.19s infinite}@keyframes cv2{0%,17.447%{transform:translateX(0);animation-timing-function:steps(19,end)}21.134%,100%{transform:translateX(102.6px)}}.cv1{animation:cv1 23.19s infinite}@keyframes cv1{0%,8.950%{transform:translateX(0);animation-timing-function:steps(36,end)}15.937%,100%{transform:translateX(194.4px)}}.cv0{animation:cv0 23.19s infinite}@keyframes cv0{0%,2.588%{transform:translateX(0);animation-timing-function:steps(25,end)}7.440%,100%{transform:translateX(135.0px)}}.cur{animation:cur 23.19s infinite}@keyframes cur{0%{transform:translate(676.0px,214.0px);animation-timing-function:step-end}2.588%{transform:translate(676.0px,214.0px);animation-timing-function:steps(25,end)}7.440%{transform:translate(811.0px,214.0px);animation-timing-function:step-end}8.950%{transform:translate(686.8px,224.6px);animation-timing-function:steps(36,end)}15.937%{transform:translate(881.2px,224.6px);animation-timing-function:step-end}17.447%{transform:translate(686.8px,235.2px);animation-timing-function:steps(19,end)}21.134%{transform:translate(789.4px,235.2px);animation-timing-function:step-end}22.644%{transform:translate(686.8px,245.8px);animation-timing-function:steps(23,end)}27.108%{transform:translate(811.0px,245.8px);animation-timing-function:step-end}28.618%{transform:translate(686.8px,256.4px);animation-timing-function:steps(40,end)}36.381%{transform:translate(902.8px,256.4px);animation-timing-function:step-end}37.891%{transform:translate(686.8px,267.0px);animation-timing-function:steps(28,end)}43.325%{transform:translate(838.0px,267.0px);animation-timing-function:step-end}44.835%{transform:translate(676.0px,277.6px);animation-timing-function:steps(2,end)}45.223%{transform:translate(686.8px,277.6px);animation-timing-function:step-end}46.733%{transform:translate(676.0px,288.2px);animation-timing-function:step-end}48.242%{transform:translate(676.0px,298.8px);animation-timing-function:steps(45,end)}56.976%{transform:translate(919.0px,298.8px);animation-timing-function:step-end}58.486%{transform:translate(676.0px,309.4px);animation-timing-function:steps(33,end)}64.891%{transform:translate(854.2px,309.4px);animation-timing-function:step-end}66.401%{transform:translate(686.8px,320.0px);animation-timing-function:steps(37,end)}73.582%{transform:translate(886.6px,320.0px);animation-timing-function:step-end}75.092%{transform:translate(686.8px,330.6px);animation-timing-function:steps(34,end)}81.691%{transform:translate(870.4px,330.6px);animation-timing-function:step-end}83.200%{transform:translate(676.0px,341.2px);animation-timing-function:steps(1,end)}83.394%{transform:translate(681.4px,341.2px);animation-timing-function:step-end}100%{transform:translate(681.4px,341.2px)}}</style>
+.cv12{animation:cv12 23.50s infinite}@keyframes cv12{0%,83.426%{transform:translateX(0);animation-timing-function:steps(1,end)}83.617%,100%{transform:translateX(5.4px)}}.cv11{animation:cv11 23.50s infinite}@keyframes cv11{0%,75.426%{transform:translateX(0);animation-timing-function:steps(34,end)}81.936%,100%{transform:translateX(183.6px)}}.cv10{animation:cv10 23.50s infinite}@keyframes cv10{0%,66.851%{transform:translateX(0);animation-timing-function:steps(37,end)}73.936%,100%{transform:translateX(199.8px)}}.cv9{animation:cv9 23.50s infinite}@keyframes cv9{0%,59.043%{transform:translateX(0);animation-timing-function:steps(33,end)}65.362%,100%{transform:translateX(178.2px)}}.cv8{animation:cv8 23.50s infinite}@keyframes cv8{0%,48.936%{transform:translateX(0);animation-timing-function:steps(45,end)}57.553%,100%{transform:translateX(243.0px)}}.cv6{animation:cv6 23.50s infinite}@keyframes cv6{0%,45.574%{transform:translateX(0);animation-timing-function:steps(2,end)}45.957%,100%{transform:translateX(10.8px)}}.cv5{animation:cv5 23.50s infinite}@keyframes cv5{0%,38.723%{transform:translateX(0);animation-timing-function:steps(28,end)}44.085%,100%{transform:translateX(151.2px)}}.cv4{animation:cv4 23.50s infinite}@keyframes cv4{0%,29.574%{transform:translateX(0);animation-timing-function:steps(40,end)}37.234%,100%{transform:translateX(216.0px)}}.cv3{animation:cv3 23.50s infinite}@keyframes cv3{0%,24.830%{transform:translateX(0);animation-timing-function:steps(17,end)}28.085%,100%{transform:translateX(91.8px)}}.cv2{animation:cv2 23.50s infinite}@keyframes cv2{0%,17.213%{transform:translateX(0);animation-timing-function:steps(32,end)}23.340%,100%{transform:translateX(172.8px)}}.cv1{animation:cv1 23.50s infinite}@keyframes cv1{0%,8.830%{transform:translateX(0);animation-timing-function:steps(36,end)}15.723%,100%{transform:translateX(194.4px)}}.cv0{animation:cv0 23.50s infinite}@keyframes cv0{0%,2.553%{transform:translateX(0);animation-timing-function:steps(25,end)}7.340%,100%{transform:translateX(135.0px)}}.cur{animation:cur 23.50s infinite}@keyframes cur{0%{transform:translate(676.0px,214.0px);animation-timing-function:step-end}2.553%{transform:translate(676.0px,214.0px);animation-timing-function:steps(25,end)}7.340%{transform:translate(811.0px,214.0px);animation-timing-function:step-end}8.830%{transform:translate(686.8px,224.6px);animation-timing-function:steps(36,end)}15.723%{transform:translate(881.2px,224.6px);animation-timing-function:step-end}17.213%{transform:translate(686.8px,235.2px);animation-timing-function:steps(32,end)}23.340%{transform:translate(859.6px,235.2px);animation-timing-function:step-end}24.830%{transform:translate(686.8px,245.8px);animation-timing-function:steps(17,end)}28.085%{transform:translate(778.6px,245.8px);animation-timing-function:step-end}29.574%{transform:translate(686.8px,256.4px);animation-timing-function:steps(40,end)}37.234%{transform:translate(902.8px,256.4px);animation-timing-function:step-end}38.723%{transform:translate(686.8px,267.0px);animation-timing-function:steps(28,end)}44.085%{transform:translate(838.0px,267.0px);animation-timing-function:step-end}45.574%{transform:translate(676.0px,277.6px);animation-timing-function:steps(2,end)}45.957%{transform:translate(686.8px,277.6px);animation-timing-function:step-end}47.447%{transform:translate(676.0px,288.2px);animation-timing-function:step-end}48.936%{transform:translate(676.0px,298.8px);animation-timing-function:steps(45,end)}57.553%{transform:translate(919.0px,298.8px);animation-timing-function:step-end}59.043%{transform:translate(676.0px,309.4px);animation-timing-function:steps(33,end)}65.362%{transform:translate(854.2px,309.4px);animation-timing-function:step-end}66.851%{transform:translate(686.8px,320.0px);animation-timing-function:steps(37,end)}73.936%{transform:translate(886.6px,320.0px);animation-timing-function:step-end}75.426%{transform:translate(686.8px,330.6px);animation-timing-function:steps(34,end)}81.936%{transform:translate(870.4px,330.6px);animation-timing-function:step-end}83.426%{transform:translate(676.0px,341.2px);animation-timing-function:steps(1,end)}83.617%{transform:translate(681.4px,341.2px);animation-timing-function:step-end}100%{transform:translate(681.4px,341.2px)}}</style>
 <title id="title">Welcome to my GitHub. Hi, I'm Nitin Govardhane, a full-stack engineer.</title>
-<desc id="desc">Animated banner: an intro in the style of nitingovardhane.com above a scene of Nitin in a hoodie typing code on a multi-monitor desk at night while it rains outside.</desc>
+<desc id="desc">Animated banner: an intro in the style of nitingovardhane.com above a scene of Nitin in a hoodie typing code on a multi-monitor desk at night while it rains outside, with a cat roaming the desk and an owl perched on the window.</desc>
 <defs>
 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0a0b"/><stop offset="0.3" stop-color="#0d1422"/><stop offset="0.7" stop-color="#16243a"/><stop offset="1" stop-color="#1d2d44"/></linearGradient>
 <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0.4" stop-color="#8fb4e0" stop-opacity="0"/><stop offset="1" stop-color="#8fb4e0" stop-opacity="0.16"/></linearGradient>
@@ -344,10 +357,10 @@
 <rect class="cv5" x="686.8" y="265.4" width="153.2" height="12.4" fill="#1e1e1e"/>
 <text x="686.8" y="264.4" font-family="Consolas,Menlo,monospace" font-size="9" textLength="216.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#9cdcfe">stack</tspan><tspan fill="#d4d4d4">: [</tspan><tspan fill="#ce9178">&quot;React&quot;</tspan><tspan fill="#d4d4d4">, </tspan><tspan fill="#ce9178">&quot;Next.js&quot;</tspan><tspan fill="#d4d4d4">, </tspan><tspan fill="#ce9178">&quot;Supabase&quot;</tspan><tspan fill="#d4d4d4">],</tspan></text>
 <rect class="cv4" x="686.8" y="254.8" width="218.0" height="12.4" fill="#1e1e1e"/>
-<text x="686.8" y="253.8" font-family="Consolas,Menlo,monospace" font-size="9" textLength="124.2" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#9cdcfe">based</tspan><tspan fill="#d4d4d4">: </tspan><tspan fill="#ce9178">&quot;Nashik, India&quot;</tspan><tspan fill="#d4d4d4">,</tspan></text>
-<rect class="cv3" x="686.8" y="244.2" width="126.2" height="12.4" fill="#1e1e1e"/>
-<text x="686.8" y="243.2" font-family="Consolas,Menlo,monospace" font-size="9" textLength="102.6" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#9cdcfe">company</tspan><tspan fill="#d4d4d4">: </tspan><tspan fill="#ce9178">&quot;BeeAPro&quot;</tspan><tspan fill="#d4d4d4">,</tspan></text>
-<rect class="cv2" x="686.8" y="233.6" width="104.6" height="12.4" fill="#1e1e1e"/>
+<text x="686.8" y="253.8" font-family="Consolas,Menlo,monospace" font-size="9" textLength="91.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#9cdcfe">coffee</tspan><tspan fill="#d4d4d4">: </tspan><tspan fill="#569cd6">Infinity</tspan><tspan fill="#d4d4d4">,</tspan></text>
+<rect class="cv3" x="686.8" y="244.2" width="93.8" height="12.4" fill="#1e1e1e"/>
+<text x="686.8" y="243.2" font-family="Consolas,Menlo,monospace" font-size="9" textLength="172.8" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#9cdcfe">focus</tspan><tspan fill="#d4d4d4">: </tspan><tspan fill="#ce9178">&quot;Web apps &amp; AI products&quot;</tspan><tspan fill="#d4d4d4">,</tspan></text>
+<rect class="cv2" x="686.8" y="233.6" width="174.8" height="12.4" fill="#1e1e1e"/>
 <text x="686.8" y="232.6" font-family="Consolas,Menlo,monospace" font-size="9" textLength="194.4" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#9cdcfe">role</tspan><tspan fill="#d4d4d4">: </tspan><tspan fill="#ce9178">&quot;Full-Stack Product Engineer&quot;</tspan><tspan fill="#d4d4d4">,</tspan></text>
 <rect class="cv1" x="686.8" y="223.0" width="196.4" height="12.4" fill="#1e1e1e"/>
 <text x="676.0" y="222.0" font-family="Consolas,Menlo,monospace" font-size="9" textLength="135.0" lengthAdjust="spacingAndGlyphs" xml:space="preserve"><tspan fill="#569cd6">const </tspan><tspan fill="#9cdcfe">nitin</tspan><tspan fill="#d4d4d4">: </tspan><tspan fill="#4ec9b0">Engineer</tspan><tspan fill="#d4d4d4"> = {</tspan></text>
@@ -366,7 +379,7 @@
 <polygon points="72,290 234,290 236,394 70,394" fill="#16181c"/>
 <rect x="79" y="296" width="148" height="92" rx="0" fill="#0d1117" />
 <g clip-path="url(#scrL)"><g class="term">
-<text x="84" y="306" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">~/beeapro $ npm run test:e2e</text>
+<text x="84" y="306" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">~/projects $ npm run test:e2e</text>
 <text x="84" y="315" font-family="monospace" font-size="6.2" fill="#8b949e" xml:space="preserve">Running 128 tests using 8 workers</text>
 <text x="84" y="324" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">  ✓ 128 passed (41.2s)</text>
 <text x="84" y="333" font-family="monospace" font-size="6.2" fill="#c9d1d9" xml:space="preserve">$ npm run typecheck</text>
@@ -378,7 +391,7 @@
 <text x="84" y="387" font-family="monospace" font-size="6.2" fill="#c9d1d9" xml:space="preserve">$ sentry issues --new</text>
 <text x="84" y="396" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">  0 new issues</text>
 <text x="84" y="405" font-family="monospace" font-size="6.2" fill="#ffb380" xml:space="preserve">$ echo &quot;keeps working ✨&quot;</text>
-<text x="84" y="414" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">~/beeapro $ npm run test:e2e</text>
+<text x="84" y="414" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">~/projects $ npm run test:e2e</text>
 <text x="84" y="423" font-family="monospace" font-size="6.2" fill="#8b949e" xml:space="preserve">Running 128 tests using 8 workers</text>
 <text x="84" y="432" font-family="monospace" font-size="6.2" fill="#7ee787" xml:space="preserve">  ✓ 128 passed (41.2s)</text>
 <text x="84" y="441" font-family="monospace" font-size="6.2" fill="#c9d1d9" xml:space="preserve">$ npm run typecheck</text>
@@ -422,6 +435,25 @@
 <ellipse cx="655" cy="402" rx="9" ry="4.5" fill="#101114"/>
 <ellipse cx="655" cy="405" rx="9" ry="1.4" fill="url(#rgb)"/>
 </g>
+<g transform="translate(664 401) scale(1.3)"><g class="catMove"><g class="catFlip">
+<ellipse cx="0" cy="1" rx="17" ry="2" fill="#000" opacity=".3"/>
+<g class="tail"><path d="M-14 -11 C-22 -12 -26 -20 -23 -30" stroke="#e08a4c" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M-24.5 -26 L-23 -30" stroke="#a85a2a" stroke-width="3.2" stroke-linecap="round"/></g>
+<rect class="leg legA" x="-12" y="-7" width="3" height="8" rx="1.4" fill="#a85a2a"/>
+<rect class="leg legB" x="-8" y="-7" width="3" height="8" rx="1.4" fill="#e08a4c"/>
+<rect class="leg legB" x="4" y="-7" width="3" height="8" rx="1.4" fill="#a85a2a"/>
+<rect class="leg legA" x="8" y="-7" width="3" height="8" rx="1.4" fill="#e08a4c"/>
+<ellipse cx="-2" cy="-11" rx="14" ry="6.5" fill="#e08a4c"/>
+<path d="M-9 -17 q1 4 0 8 M-4 -17.5 q1 4 0 8 M1 -17.5 q1 4 0 8" stroke="#a85a2a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="3" cy="-5.6" rx="8" ry="1.8" fill="#f6d7b5" opacity=".8"/>
+<path d="M7 -21 L8.5 -29 L12.5 -22 Z M14 -22 L18 -29 L18.5 -20 Z" fill="#e08a4c"/>
+<path d="M8.6 -22.5 L9.2 -26.5 L11 -23 Z M15.2 -22.3 L17.4 -26.4 L17.6 -21.4 Z" fill="#f4a3a8"/>
+<circle cx="13" cy="-17" r="6.4" fill="#e08a4c"/>
+<ellipse cx="16.5" cy="-14.6" rx="3" ry="2.2" fill="#f6d7b5"/>
+<ellipse cx="15.4" cy="-18.4" rx="1.3" ry="1.5" fill="#a6e35a"/><ellipse cx="15.7" cy="-18.4" rx=".45" ry="1.2" fill="#111"/>
+<circle cx="18.9" cy="-15.6" r=".8" fill="#e5737c"/>
+<path d="M18 -14.8 l5 -.8 M18 -14 l5 .6" stroke="#fff" stroke-width=".4" opacity=".7"/>
+<path d="M-12 -16.5 C-4 -19 6 -19 9 -22" stroke="#8ec1ff" stroke-width="1" fill="none" opacity=".45" stroke-linecap="round"/>
+</g></g></g>
 <g class="body">
 <path d="M352 560 C346 500 340 440 346 380 C350 336 372 304 410 292 L530 292 C568 304 590 336 594 380 C600 440 594 500 588 560 Z" fill="url(#hoodie)"/>
 <path d="M470 300 L470 560" stroke="#6c727d" stroke-opacity="0.35" stroke-width="2"/>
@@ -468,6 +500,23 @@
 <rect x="0" y="0" width="1000" height="830" rx="0" fill="url(#vignette)" />
 <rect width="1000" height="250" fill="url(#heroShade)"/>
 <text x="24" y="810" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#c9d1d9" opacity=".85">~/nitin <tspan fill="#ff804a">$</tspan> git push --ship<tspan class="blink">_</tspan></text>
+<g transform="translate(948 271)">
+<path d="M-15 -4 C-20 -18 -17 -34 -9 -38 L9 -38 C17 -34 20 -18 15 -4 Q0 4 -15 -4 Z" fill="#7a5a3f"/>
+<path d="M-14 -24 C-20 -16 -18 -6 -11 -2 Z M14 -24 C20 -16 18 -6 11 -2 Z" fill="#4e3826"/>
+<ellipse cx="0" cy="-15" rx="9.5" ry="11" fill="#cfae82"/>
+<path d="M-5 -19 l2 2 l2 -2 M1 -19 l2 2 l2 -2 M-6 -13 l2 2 l2 -2 M0 -13 l2 2 l2 -2 M-3 -7 l2 2 l2 -2 M3 -7 l2 2 l2 -2" stroke="#4e3826" stroke-width=".9" fill="none" opacity=".7"/>
+<path d="M-6 0 l-1.6 2.6 M-4.4 0 v3 M-2.8 0 l1.6 2.6 M2.8 0 l-1.6 2.6 M4.4 0 v3 M6 0 l1.6 2.6" stroke="#ffb380" stroke-width="1.3" stroke-linecap="round"/>
+<g class="owlHead">
+<path d="M-16 -36 C-17 -48 -12 -56 0 -56 C12 -56 17 -48 16 -36 C14 -29 8 -27 0 -27 C-8 -27 -14 -29 -16 -36 Z" fill="#7a5a3f"/>
+<path d="M-14.5 -47 L-16.5 -60 L-6 -54 Z M14.5 -47 L16.5 -60 L6 -54 Z" fill="#4e3826"/>
+<circle cx="-6.8" cy="-42" r="7.4" fill="#ead6b4"/><circle cx="6.8" cy="-42" r="7.4" fill="#ead6b4"/>
+<circle cx="-6.8" cy="-42" r="4.6" fill="#ffb13d"/><circle cx="-6.8" cy="-42" r="2.4" fill="#111"/><circle cx="-5.8" cy="-43.2" r=".8" fill="#fff"/>
+<rect class="lid" x="-11.8" y="-47" width="10" height="10" rx="5" fill="#7a5a3f"/>
+<circle cx="6.8" cy="-42" r="4.6" fill="#ffb13d"/><circle cx="6.8" cy="-42" r="2.4" fill="#111"/><circle cx="7.8" cy="-43.2" r=".8" fill="#fff"/>
+<rect class="lid" x="1.7999999999999998" y="-47" width="10" height="10" rx="5" fill="#7a5a3f"/>
+<path d="M-1.8 -38.5 L1.8 -38.5 L0 -34 Z" fill="#e0a040"/>
+<path d="M-12 -51.5 C-6 -55.2 6 -55.2 12 -51.5" stroke="#8ec1ff" stroke-width=".9" fill="none" opacity=".35"/>
+</g></g>
 <g class="enter">
 <rect x="50" y="36" width="372" height="32" rx="16" fill="#121214" stroke="#26262a" fill-opacity="0.85"/>
 <rect x="55" y="41" width="22" height="22" rx="6.2" fill="#f4f4f5" />
@@ -475,7 +524,7 @@
 <circle cx="72.6" cy="58.6" r="1.3" fill="#ff804a"/>
 <circle class="pulse" cx="92" cy="52" r="4" fill="#34d399"/>
 <circle cx="92" cy="52" r="4" fill="#34d399"/>
-<text x="104" y="56.5" font-family="Geist, Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8a8b0" textLength="300" lengthAdjust="spacingAndGlyphs">Software Engineer at <tspan fill="#f4f4f5" font-weight="600">BeeAPro</tspan><tspan fill="#82828c">  ·  Nashik, India</tspan></text>
+<text x="104" y="56.5" font-family="Geist, Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#a8a8b0" textLength="292" lengthAdjust="spacingAndGlyphs"><tspan fill="#f4f4f5" font-weight="600">Software Engineer</tspan><tspan fill="#82828c">  ·  </tspan>Open to collaborations</text>
 </g>
 <g class="enter"><text x="944" y="57" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#a8a8b0" text-anchor="end">nitingovardhane.com <tspan fill="#ff804a">↗</tspan></text></g>
 <text x="56" y="112" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="500" fill="#ff804a" textLength="184.8" lengthAdjust="spacingAndGlyphs" clip-path="url(#typeClip)">&gt; welcome to my github</text>
