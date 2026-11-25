@@ -67,7 +67,8 @@ T = t + HOLD
 pct = lambda x: f"{x / T * 100:.3f}%"
 
 # ---------- cat walk cycle (right side of the desk) ----------
-CAT_T, CAT_DX, STEP = 16, 110, 0.2
+CAT_T, CAT_DX, STEP = 16, 62, 0.22
+CAT_X, CAT_S = 682, 1.9
 WALKS = ((0.06, 0.38), (0.56, 0.88))
 
 
@@ -123,6 +124,9 @@ A(f'''<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop
 EYEBROW = "> welcome to my github"
 EB_X, EB_Y, EB_CW = 56, 112, 8.4
 A(f'<clipPath id="typeClip"><rect class="typeReveal" x="{EB_X}" y="{EB_Y - 16}" width="{len(EYEBROW) * EB_CW + 4:.1f}" height="22"/></clipPath>')
+A('<linearGradient id="catFur" gradientUnits="userSpaceOnUse" x1="0" y1="-34" x2="0" y2="0"><stop offset="0" stop-color="#ffb877"/><stop offset=".55" stop-color="#ef9048"/><stop offset="1" stop-color="#cf6a2e"/></linearGradient>'
+  '<filter id="catLine" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="0" stdDeviation=".55" flood-color="#2a1206" flood-opacity=".95"/></filter>'
+  '<radialGradient id="catEye" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#d8ff8a"/><stop offset=".7" stop-color="#7cc743"/><stop offset="1" stop-color="#3f7d22"/></radialGradient>')
 A('</defs>')
 
 # ---------- CSS ----------
@@ -170,6 +174,10 @@ css.append(f'''
 .legB{{animation:legB {CAT_T}s infinite}}
 .tail{{transform-box:fill-box;transform-origin:100% 100%;animation:tail 1.8s ease-in-out infinite alternate}}
 @keyframes tail{{from{{transform:rotate(-14deg)}}to{{transform:rotate(12deg)}}}}
+.ear{{transform-box:fill-box;transform-origin:50% 100%;animation:ear 5.2s ease-in-out infinite}}
+@keyframes ear{{0%,86%,100%{{transform:rotate(0)}}89%{{transform:rotate(-14deg)}}92%{{transform:rotate(6deg)}}}}
+.catHead{{transform-box:fill-box;transform-origin:20% 90%;animation:catHead {CAT_T}s ease-in-out infinite}}
+@keyframes catHead{{0%,40%,54%,100%{{transform:rotate(0)}}44%,50%{{transform:rotate(-8deg)}}}}
 .owlHead{{transform-box:fill-box;transform-origin:50% 90%;animation:owlHead 9s ease-in-out infinite}}
 @keyframes owlHead{{0%,40%,100%{{transform:rotate(0)}}46%,58%{{transform:rotate(-14deg)}}64%,72%{{transform:rotate(10deg)}}78%{{transform:rotate(0)}}}}
 .lid{{transform-box:fill-box;transform-origin:50% 0;animation:lid 4.6s infinite}}
@@ -398,26 +406,54 @@ A('<ellipse cx="655" cy="402" rx="9" ry="4.5" fill="#101114"/>')
 A('<ellipse cx="655" cy="405" rx="9" ry="1.4" fill="url(#rgb)"/>')
 A('</g>')
 
-# ---------- cat roaming the desk ----------
-CAT, STRIPE, CREAM = "#e08a4c", "#a85a2a", "#f6d7b5"
-A('<g transform="translate(664 401) scale(1.3)"><g class="catMove"><g class="catFlip">')
-A('<ellipse cx="0" cy="1" rx="17" ry="2" fill="#000" opacity=".3"/>')
-A(f'<g class="tail"><path d="M-14 -11 C-22 -12 -26 -20 -23 -30" stroke="{CAT}" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
-  f'<path d="M-24.5 -26 L-23 -30" stroke="{STRIPE}" stroke-width="3.2" stroke-linecap="round"/></g>')
-for x, cls in ((-12, "legA"), (-8, "legB"), (4, "legB"), (8, "legA")):
-    A(f'<rect class="leg {cls}" x="{x}" y="-7" width="3" height="8" rx="1.4" fill="{CAT if x in (-8, 8) else STRIPE}"/>')
-A(f'<ellipse cx="-2" cy="-11" rx="14" ry="6.5" fill="{CAT}"/>')
-A(f'<path d="M-9 -17 q1 4 0 8 M-4 -17.5 q1 4 0 8 M1 -17.5 q1 4 0 8" stroke="{STRIPE}" stroke-width="1.6" fill="none" stroke-linecap="round"/>')
-A(f'<ellipse cx="3" cy="-5.6" rx="8" ry="1.8" fill="{CREAM}" opacity=".8"/>')
-A(f'<path d="M7 -21 L8.5 -29 L12.5 -22 Z M14 -22 L18 -29 L18.5 -20 Z" fill="{CAT}"/>')
-A(f'<path d="M8.6 -22.5 L9.2 -26.5 L11 -23 Z M15.2 -22.3 L17.4 -26.4 L17.6 -21.4 Z" fill="#f4a3a8"/>')
-A(f'<circle cx="13" cy="-17" r="6.4" fill="{CAT}"/>')
-A(f'<ellipse cx="16.5" cy="-14.6" rx="3" ry="2.2" fill="{CREAM}"/>')
-A('<ellipse cx="15.4" cy="-18.4" rx="1.3" ry="1.5" fill="#a6e35a"/><ellipse cx="15.7" cy="-18.4" rx=".45" ry="1.2" fill="#111"/>')
-A('<circle cx="18.9" cy="-15.6" r=".8" fill="#e5737c"/>')
-A('<path d="M18 -14.8 l5 -.8 M18 -14 l5 .6" stroke="#fff" stroke-width=".4" opacity=".7"/>')
-A('<path d="M-12 -16.5 C-4 -19 6 -19 9 -22" stroke="#8ec1ff" stroke-width="1" fill="none" opacity=".45" stroke-linecap="round"/>')
-A('</g></g></g>')
+# ---------- cat roaming the desk (side view, facing right; feet at y=0) ----------
+FUR, FUR_DK, STRIPE, CREAM = "url(#catFur)", "#c7652e", "#b0521f", "#fde6cc"
+A(f'<g transform="translate({CAT_X} 401) scale({CAT_S})"><g class="catMove"><g class="catFlip"><g filter="url(#catLine)">')
+A('<ellipse cx="1" cy="0.6" rx="19" ry="1.8" fill="#000" opacity=".35"/>')
+# tail (behind the body), curling up with a darker tip
+A(f'<g class="tail"><path d="M-15 -12 C-24 -12 -28 -19 -26 -27 C-25 -32 -21 -34 -19 -31" stroke="{FUR}" stroke-width="4" fill="none" stroke-linecap="round"/>'
+  f'<path d="M-24.6 -30.4 C-23 -33.6 -20.6 -33.8 -19 -31" stroke="{STRIPE}" stroke-width="4" fill="none" stroke-linecap="round"/>'
+  f'<path d="M-23.5 -16 l2.6 -1.6 M-26 -22 l3 -.4" stroke="{STRIPE}" stroke-width="1.4" stroke-linecap="round"/></g>')
+
+
+def cat_leg(x, cls, near):
+    fill = FUR if near else FUR_DK
+    A(f'<g class="leg {cls}"><rect x="{x}" y="-9" width="3.6" height="9" rx="1.8" fill="{fill}"/>'
+      f'<ellipse cx="{x + 2.2}" cy="-0.6" rx="2.4" ry="1.3" fill="{CREAM if near else "#e9c9a5"}"/></g>')
+
+
+cat_leg(-9.5, "legB", False)
+cat_leg(8.5, "legA", False)
+# body: a soft loaf with a rounded haunch
+A(f'<path d="M-16.5 -12.5 C-17 -18.5 -10 -20.5 -2 -20 C5 -19.6 10 -19.6 12.4 -16.4 C14.4 -12.6 12.4 -7.2 8.4 -6 L-11 -6 C-15.6 -6.8 -16.6 -9.6 -16.5 -12.5 Z" fill="{FUR}"/>')
+A(f'<ellipse cx="-11" cy="-11.2" rx="5.8" ry="6" fill="{FUR}"/>')
+A(f'<path d="M-15.4 -9 C-14 -6.6 -9 -6.2 -6.4 -8" stroke="{FUR_DK}" stroke-width=".8" fill="none" opacity=".6"/>')
+A(f'<path d="M5 -17 C11 -16 13 -10 9 -6.2 L1 -6.2 C3.6 -9 4 -13 5 -17 Z" fill="{CREAM}"/>')
+A(f'<path d="M-8.6 -19.8 q1.6 3.4 .4 7 M-4.4 -20 q1.6 3.6 .4 7.4 M-.2 -19.8 q1.4 3.2 .4 6.6 M-13.6 -16.4 q2.8 1.6 3 5" stroke="{STRIPE}" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".9"/>')
+cat_leg(-12.5, "legA", True)
+cat_leg(5.6, "legB", True)
+# head
+A('<g class="catHead">')
+A(f'<path class="ear" d="M9.4 -23.4 L10.2 -32.4 Q11 -33 11.8 -32.2 L15.4 -27.4 Z" fill="{FUR}"/>')
+A(f'<path class="ear" style="animation-delay:-.15s" d="M16.2 -27.6 L20.6 -32.6 Q21.4 -33 21.6 -32 L21.8 -22.8 Z" fill="{FUR}"/>')
+A('<path d="M10.6 -25 L11 -30.2 L13.8 -27 Z M17.6 -27.4 L20.6 -30.6 L20.8 -24.4 Z" fill="#f7a8b4"/>')
+A(f'<path d="M8.2 -20.2 C8 -25.6 11.6 -28.4 15.4 -28.4 C19.6 -28.4 22.8 -25.4 22.8 -21.2 C22.8 -17.6 21 -14.6 16.6 -14 '
+  f'C13.6 -13.6 11 -14.4 9.6 -15.6 L8 -15.2 L8.8 -16.8 L7.4 -17.2 L8.6 -18.2 Z" fill="{FUR}"/>')
+A(f'<path d="M14 -28.2 v2.6 M16 -28.4 v2.8 M18 -28 v2.4" stroke="{STRIPE}" stroke-width="1" stroke-linecap="round"/>')
+A(f'<ellipse cx="19.8" cy="-17.4" rx="3.4" ry="2.6" fill="{CREAM}"/>')
+A('<ellipse cx="17.2" cy="-21.2" rx="2" ry="2.4" fill="url(#catEye)"/>')
+A('<ellipse cx="17.6" cy="-21.1" rx=".75" ry="1.9" fill="#14110f"/>')
+A('<circle cx="16.6" cy="-22.2" r=".65" fill="#fff"/><circle cx="18.1" cy="-20.1" r=".3" fill="#fff" opacity=".8"/>')
+A(f'<rect class="lid" style="animation-delay:-2.3s" x="14.9" y="-23.9" width="4.6" height="5.4" rx="2.3" fill="#e9904f"/>')
+A('<ellipse cx="15.8" cy="-17.6" rx="1.6" ry=".9" fill="#ff8fa3" opacity=".55"/>')
+A('<path d="M21.6 -19.1 L23.1 -19.3 L22.2 -18.1 Z" fill="#ff7f9a"/>')
+A('<path d="M22.3 -18.1 q-.2 1 -1.4 1.1" stroke="#7a3a14" stroke-width=".4" fill="none" stroke-linecap="round"/>')
+A('<path d="M20.6 -17.8 l6.4 -1.6 M20.8 -17.2 l6.6 .2 M20.6 -16.6 l6 1.6" stroke="#fff" stroke-width=".3" opacity=".75" stroke-linecap="round"/>')
+A('</g>')
+# collar + bell
+A('<path d="M10.2 -23.2 C8.6 -20.4 8.8 -16.6 10.6 -14.4" stroke="#3b82f6" stroke-width="1.8" fill="none" stroke-linecap="round"/>')
+A('<circle cx="10.4" cy="-13.4" r="1.4" fill="#ffd34d"/><circle cx="10" cy="-13.8" r=".45" fill="#fff6c9"/>')
+A('</g></g></g></g>')
 
 # ---------- person ----------
 TORSO = "M352 560 C346 500 340 440 346 380 C350 336 372 304 410 292 L530 292 C568 304 590 336 594 380 C600 440 594 500 588 560 Z"
@@ -494,12 +530,11 @@ A('</g></g>')
 # ================= hero (portfolio style) =================
 # status pill
 A('<g class="enter">')
-rect(50, 36, 372, 32, "#121214", rx=16, extra=f'stroke="{LINE}" fill-opacity="0.85"')
+rect(50, 36, 200, 32, "#121214", rx=16, extra=f'stroke="{LINE}" fill-opacity="0.85"')
 monogram(55, 41, 22)
 A(f'<circle class="pulse" cx="92" cy="52" r="4" fill="{SUCCESS}"/>')
 A(f'<circle cx="92" cy="52" r="4" fill="{SUCCESS}"/>')
-A(f'<text x="104" y="56.5" font-family="{SANS}" font-size="13" fill="{FG2}" textLength="292" lengthAdjust="spacingAndGlyphs">'
-  f'<tspan fill="{FG}" font-weight="600">Software Engineer</tspan><tspan fill="{FG3}">  ·  </tspan>Open to collaborations</text>')
+A(f'<text x="104" y="56.5" font-family="{SANS}" font-size="13" font-weight="600" fill="{FG}" textLength="128" lengthAdjust="spacingAndGlyphs">Software Engineer</text>')
 A('</g>')
 A(f'<g class="enter"><text x="944" y="57" font-family="{MONO}" font-size="13" fill="{FG2}" text-anchor="end">'
   f'nitingovardhane.com <tspan fill="{ACCENT}">↗</tspan></text></g>')
